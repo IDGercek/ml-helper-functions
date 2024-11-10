@@ -14,16 +14,21 @@ def plot_metrics(metrics: dict):
 
     plt.figure(figsize=(15, 6))
 
-    plt.subplot(2, 1, 1)
-    plt.title("Loss")
-    plt.plot(x, metrics["train_losses"], label="Train Losses")
-    plt.plot(x, metrics["test_losses"], label="Test Losses")
-    plt.legend()
+    # This code is fucknig awesome
+    i = 1
+    if "train_losses" in metrics:
+        plt.subplot(2, 1, i)
+        plt.title("Loss")
+        plt.plot(x, metrics["train_losses"], label="Train Losses")
+        plt.plot(x, metrics["test_losses"], label="Test Losses")
+        plt.legend()
+        i += 1
 
-    plt.subplot(2, 1, 2)
-    plt.title("Accuracy")
-    plt.plot(x, metrics["train_accuracies"], label="Train Accuracies")
-    plt.plot(x, metrics["test_accuracies"], label="Test Accuracies")
-    plt.legend()
-
+    if "train_accuracies" in metrics:
+        plt.subplot(2, 1, i)
+        plt.title("Accuracy")
+        plt.plot(x, metrics["train_accuracies"], label="Train Accuracies")
+        plt.plot(x, metrics["test_accuracies"], label="Test Accuracies")
+        plt.legend()
+        i += 1
     plt.show()
